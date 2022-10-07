@@ -7,6 +7,8 @@ module.exports = {
   devtool: "inline-source-map",
   devServer: {
     static: "./dist",
+    watchFiles: ["src/*.html"],
+    hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -17,6 +19,7 @@ module.exports = {
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
   module: {
     rules: [
@@ -37,6 +40,10 @@ module.exports = {
         generator: {
           filename: "fonts/[name][ext]",
         },
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
       },
     ],
   },

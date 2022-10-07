@@ -1,9 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Todo List</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><script defer src="main.js"></script></head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+  <script defer src="main.js"></script></head>
   <body>
+    <header>
+      <img src="images/logo.png" alt="" class="header-logo" />
+      <h1 class="header-title">Todo List</h1>
+    </header>
+    <section class="sidebar">
+      <nav>
+        <ul class="main-nav">
+          <li>
+            <img src="images/home.png" alt="" />
+            <h3 class="sidebar-text">Home</h3>
+          </li>
+          <li>
+            <img src="images/today.png" alt="" />
+            <h3 class="sidebar-text">Today</h3>
+          </li>
+          <li>
+            <img src="images/week.png" alt="" />
+            <h3 class="sidebar-text">This week</h3>
+          </li>
+        </ul>
+
+        <div class="project-title">
+          <h2 class="project-title-text"></h2>
+          <img src="images/add.png" alt="" class="add-project" />
+        </div>
+
+        <ul class="projects-nav"></ul>
+      </nav>
+    </section>
+    <main>
+      <h2 class="main-title">Project 1</h2>
+      <section class="tasks-list-container">
+        <ul class="tasks-list">
+          <li class="task-container">
+            <img src="images/tasks.png" alt="" class="task-logo" />
+            <p class="task-title">Task 1</p>
+            <img
+              src="images/checkbox-blank-outline.png"
+              alt=""
+              class="task-checkbox-blank"
+            /><img
+              src="images/checkbox-intermediate.png"
+              alt=""
+              class="task-checkbox-filled"
+            /><img src="images/pencil.png" alt="" class="task-edit" /><img
+              src="images/remove.png"
+              alt=""
+              class="task-remove"
+            />
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <img src="images/github.png" alt="" class="github-logo" />
+      <h3 class="footer-text">Crafted by: Reza Bavandpoor</h3>
+    </footer>
+
+    <template id="project-template">
+      <li class="tasks">
+        <img src="images/tasks.png" alt="" class="tasks-logo" />
+        <h3 class="tasks-title"></h3>
+      </li>
+    </template>
+
+    <template id="project-modal">
+      <div class="modal-bg">
+        <div class="modal-container">
+          <img src="images/close-thick.png" alt="" class="modal-close" />
+          <form>
+            <label for="project-title">Project title: </label>
+            <input type="text" required id="project-title" />
+            <button>Add project</button>
+          </form>
+        </div>
+      </div>
+    </template>
   </body>
 </html>
