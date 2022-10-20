@@ -41,23 +41,20 @@
       <section class="tasks-list-container">
         <ul class="tasks-list">
           <li class="task-container">
-            <img src="./images/tasks.png" alt="" class="task-logo" />
-            <p class="task-title">Task 1</p>
             <img
               src="./images/checkbox-blank-outline.png"
               alt=""
               class="task-checkbox-blank"
-            /><img
-              src="./images/checkbox-intermediate.png"
-              alt=""
-              class="task-checkbox-filled"
-            /><img src="./images/pencil.png" alt="" class="task-edit" /><img
+            />
+            <p class="task-title">Task 1</p>
+            <img src="./images/pencil.png" alt="" class="task-edit" /><img
               src="./images/remove.png"
               alt=""
               class="task-remove"
             />
           </li>
         </ul>
+        <button class="add-task">+</button>
       </section>
     </main>
     <footer>
@@ -76,13 +73,58 @@
       <div class="modal-bg">
         <div class="modal-container">
           <img src="./images/close-thick.png" alt="" class="modal-close" />
-          <form>
+          <form id="project-form">
             <label for="project-title">Project title: </label>
             <input type="text" required id="project-title" />
             <button>Add project</button>
           </form>
         </div>
       </div>
+    </template>
+    <template id="task-modal">
+      <div class="modal-bg">
+        <div class="modal-container">
+          <img src="./images/close-thick.png" alt="" class="modal-close" />
+          <form id="task-form">
+            <h3 class="task-modal-title">Add a new task</h3>
+            <div class="task-title-input">
+              <label for="task-title">Title:</label>
+              <input type="text" required id="task-title" />
+            </div>
+            <div class="task-description-input">
+              <label for="task-description">Description:</label>
+              <textarea id="task-description" cols="20" rows="1"></textarea>
+            </div>
+            <div class="task-date-input">
+              <lable for="task-date">Due date:</lable>
+              <input type="date" id="task-date" required />
+            </div>
+            <div class="priority">
+              <p class="priority-title">Priority:</p>
+              <input type="radio" name="priority" id="low" checked />
+              <label for="low" class="low-label">Low</label>
+              <input type="radio" name="priority" id="medium" />
+              <label for="medium" class="medium-label">Medium</label>
+              <input type="radio" name="priority" id="high" />
+              <label for="high" class="high-label">High</label>
+            </div>
+            <button class="create-task-button">Add task</button>
+          </form>
+        </div>
+      </div>
+    </template>
+    <template id="task-template">
+      <li class="task-container">
+        <img
+          src="./images/checkbox-blank-outline.png"
+          alt=""
+          class="task-checkbox"
+        />
+        <p class="task-title"></p>
+        <p class="task-date"></p>
+        <img src="./images/pencil.png" alt="" class="task-edit" />
+        <img src="./images/remove.png" alt="" class="task-remove" />
+      </li>
     </template>
   </body>
 </html>

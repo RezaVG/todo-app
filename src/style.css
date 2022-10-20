@@ -132,6 +132,11 @@ nav ul li img {
   height: 32px;
 }
 
+.add-project:hover {
+  opacity: 0.6;
+  scale: 1.1;
+}
+
 .project-title {
   display: flex;
   align-items: center;
@@ -168,6 +173,10 @@ main {
   font-weight: bold;
 }
 
+.tasks-list-container {
+  position: relative;
+}
+
 .task-container {
   display: flex;
   align-items: center;
@@ -175,6 +184,7 @@ main {
   padding: 0.5rem 1rem;
   background-color: #d9d9d9;
   border-radius: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .tasks-list li img {
@@ -186,6 +196,28 @@ main {
   font-size: 1rem;
   font-weight: 500;
   margin-right: auto;
+}
+
+.add-task {
+  width: 3rem;
+  height: 3rem;
+  background-color: black;
+  color: white;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  bottom: -4rem;
+}
+
+.add-task:hover {
+  opacity: 0.7;
+  box-shadow: 0 1rem 1rem -0.5rem rgba(0, 0, 0, 0.9);
+  scale: 1.05;
 }
 
 footer {
@@ -240,4 +272,44 @@ footer {
 
 .modal-container input {
   max-width: 100%;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.priority label {
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.low-label {
+  color: #089627;
+}
+
+#low:checked + .low-label,
+.low-label:hover {
+  background-color: #089627;
+  color: white;
+}
+
+.medium-label {
+  color: #e0a628;
+}
+
+#medium:checked + .medium-label,
+.medium-label:hover {
+  background-color: #e0a628;
+  color: white;
+}
+
+.high-label {
+  color: rgb(228, 30, 30);
+}
+
+#high:checked + label,
+.high-label:hover {
+  background-color: rgb(228, 30, 30);
+  color: white;
 }
