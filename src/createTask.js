@@ -2,8 +2,8 @@ export default function createTask(
   title,
   description,
   dueDate,
-  priority
-  //   complete
+  priority,
+  complete
 ) {
   return {
     id: Date.now().toString(),
@@ -11,6 +11,6 @@ export default function createTask(
     description: description,
     dueDate: dueDate,
     priority: priority,
-    // complete: complete,
+    complete: complete,
   };
 }

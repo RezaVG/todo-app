@@ -113,6 +113,20 @@
         </div>
       </div>
     </template>
+    <template id="details-modal">
+      <div class="modal-bg">
+        <div class="modal-container">
+          <img src="./images/close-thick.png" alt="" class="modal-close" />
+          <div class="details-container">
+            <p class="details-project">Project:</p>
+            <p class="details-title">Title:</p>
+            <p class="details-description">Description:</p>
+            <p class="details-dueDate">Due Date:</p>
+            <p class="details-priority">Priority:</p>
+          </div>
+        </div>
+      </div>
+    </template>
     <template id="task-template">
       <li class="task-container">
         <img
@@ -121,6 +135,7 @@
           class="task-checkbox"
         />
         <p class="task-title"></p>
+        <button class="details">Details</button>
         <p class="task-date"></p>
         <img src="./images/pencil.png" alt="" class="task-edit" />
         <img src="./images/remove.png" alt="" class="task-remove" />

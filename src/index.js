@@ -2,6 +2,7 @@ import "./style.css";
 import { format } from "date-fns";
 import projectModal from "./projectModal";
 import taskModal from "./taskModal";
+import detailsModal from "./detailsModal";
 import createProject from "./createProject";
 import createTask from "./createTask";
 
@@ -58,7 +59,6 @@ addTaskBtn.addEventListener("click", () => {
   taskForm.addEventListener("submit", e => {
     e.preventDefault();
     const priority = Array.from(priorityInput).find(input => input.checked).id;
-    console.log(priority);
     const taskDate = format(new Date(taskDueDateInput.value), "do MMM");
     const newTask = createTask(
       taskTitleInput.value,
@@ -130,14 +130,48 @@ function renderTasks(selectedProject) {
     selectedProject.tasks.forEach(task => {
       const taskElement = document.importNode(taskTemplate.content, true);
       const taskCheckbox = taskElement.querySelector(".task-checkbox");
-      task.complete
-        ? (taskCheckbox.src = "./images/checkbox-intermediate.png")
-        : (taskCheckbox.src = "./images/checkbox-blank-outline.png");
+      if (task.complete) {
+        taskCheckbox.src = "./images/checkbox-intermediate.png";
+        taskCheckbox.parentElement.style.opacity = "0.2";
+      } else {
+        taskCheckbox.src = "./images/checkbox-blank-outline.png";
+      }
       const taskTitle = taskElement.querySelector(".task-title");
       taskTitle.innerText = task.title;
       const taskDate = taskElement.querySelector(".task-date");
       taskDate.innerText = task.dueDate;
+      const detailsBtn = taskElement.querySelector(".details");
+      detailsBtn.addEventListener("click", e => {
+        detailsModal();
+      });
+      switch (task.priority) {
+        case "low":
+          taskElement.querySelector("li").style.backgroundColor =
+            "hsl(133, 90%, 80%)";
+          break;
+        case "medium":
+          taskElement.querySelector("li").style.backgroundColor =
+            "hsl(41, 75%, 80%)";
+          break;
+        case "high":
+          taskElement.querySelector("li").style.backgroundColor =
+            "hsl(0, 79%, 80%)";
+          break;
+      }
+      taskCheckbox.id = task.id;
       taskList.appendChild(taskElement);
+      taskCheckbox.addEventListener("click", e => {
+        const selectedTask = selectedProject.tasks.find(
+          task => task.id === e.target.id
+        );
+        if (!selectedTask.complete) {
+          selectedTask.complete = true;
+          render();
+        } else {
+          selectedTask.complete = false;
+          render();
+        }
+      });
     });
   }
 }

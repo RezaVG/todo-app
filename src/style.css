@@ -180,16 +180,44 @@ main {
 .task-container {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   padding: 0.5rem 1rem;
   background-color: #d9d9d9;
   border-radius: 1rem;
   margin-bottom: 0.5rem;
 }
 
+.task-container:hover {
+  -webkit-transform: scale(1.003);
+  transform: scale(1.003);
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-box-shadow: 3px 3px 5px 2px rgb(0 0 0 / 20%);
+  box-shadow: 3px 3px 5px 2px rgb(0 0 0 / 20%);
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.task-container button {
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.25rem;
+}
+
+.task-container button:hover {
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+}
+
 .tasks-list li img {
   width: 24px;
   height: 24px;
+}
+
+.task-checkbox:hover {
+  cursor: pointer;
 }
 
 .task-title {
@@ -285,31 +313,37 @@ input[type="radio"] {
 }
 
 .low-label {
-  color: #089627;
+  color: hsl(133, 90%, 31%);
 }
 
 #low:checked + .low-label,
 .low-label:hover {
-  background-color: #089627;
+  background-color: hsl(133, 90%, 31%);
   color: white;
 }
 
 .medium-label {
-  color: #e0a628;
+  color: hsl(41, 75%, 52%);
 }
 
 #medium:checked + .medium-label,
 .medium-label:hover {
-  background-color: #e0a628;
+  background-color: hsl(41, 75%, 52%);
   color: white;
 }
 
 .high-label {
-  color: rgb(228, 30, 30);
+  color: hsl(0, 79%, 51%);
 }
 
 #high:checked + label,
 .high-label:hover {
-  background-color: rgb(228, 30, 30);
+  background-color: hsl(0, 79%, 51%);
   color: white;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
 }
