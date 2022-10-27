@@ -1,5 +1,5 @@
 import "./style.css";
-import { format } from "date-fns";
+import { format, formatRFC3339 } from "date-fns";
 import projectModal from "./projectModal";
 import taskModal from "./taskModal";
 import detailsModal from "./detailsModal";
@@ -48,6 +48,26 @@ projectList.addEventListener("click", e => {
   }
 });
 
+const home = document.querySelector(".home");
+home.addEventListener("click", e => {
+  console.log(e.target);
+  selectedListId = null;
+  clearElement(projectList);
+  if (document.querySelector(".modal-bg")) {
+    document.querySelector(".modal-bg").remove();
+  }
+  renderProjects();
+  document.querySelector(
+    ".project-title-text"
+  ).innerText = `Projects (${projects.length})`;
+
+  mainTitle.innerText = "Home";
+  clearElement(taskList);
+  projects.forEach(project => {
+    renderTasks(project);
+  });
+});
+
 const addTaskBtn = document.querySelector(".add-task");
 addTaskBtn.addEventListener("click", () => {
   taskModal();
@@ -59,11 +79,10 @@ addTaskBtn.addEventListener("click", () => {
   taskForm.addEventListener("submit", e => {
     e.preventDefault();
     const priority = Array.from(priorityInput).find(input => input.checked).id;
-    const taskDate = format(new Date(taskDueDateInput.value), "do MMM");
     const newTask = createTask(
       taskTitleInput.value,
       taskDescriptionInput.value,
-      taskDate,
+      taskDueDateInput.value,
       priority
     );
 
@@ -139,10 +158,56 @@ function renderTasks(selectedProject) {
       const taskTitle = taskElement.querySelector(".task-title");
       taskTitle.innerText = task.title;
       const taskDate = taskElement.querySelector(".task-date");
-      taskDate.innerText = task.dueDate;
+      taskDate.innerText = format(new Date(task.dueDate), "do MMM");
       const detailsBtn = taskElement.querySelector(".details");
-      detailsBtn.addEventListener("click", e => {
+      detailsBtn.addEventListener("click", () => {
         detailsModal();
+        const detailProjectTitle = document.querySelector(".details-project");
+        detailProjectTitle.textContent += ` ${selectedProject.name}`;
+        const detailTaskTitle = document.querySelector(".details-title");
+        detailTaskTitle.textContent += ` ${task.title}`;
+        const detailTaskDescription = document.querySelector(
+          ".details-description"
+        );
+        detailTaskDescription.textContent += ` ${task.description}`;
+        const detailTaskDueDate = document.querySelector(".details-dueDate");
+        detailTaskDueDate.textContent += ` ${task.dueDate}`;
+        const detailTaskPriority = document.querySelector(".details-priority");
+        detailTaskPriority.textContent += ` ${task.priority}`;
+      });
+      const editTaskBtn = taskElement.querySelector(".task-edit");
+      editTaskBtn.addEventListener("click", () => {
+        taskModal();
+        const taskForm = document.querySelector("#task-form");
+        const taskTitleInput = document.getElementById("task-title");
+        taskTitleInput.value = task.title;
+        const taskDescriptionInput =
+          document.getElementById("task-description");
+        taskDescriptionInput.value = task.description;
+        const taskDueDateInput = document.getElementById("task-date");
+        taskDueDateInput.value = task.dueDate;
+        const priorityInput = document.getElementsByName("priority");
+        priorityInput.forEach(input => {
+          if (input.id === task.priority) {
+            input.checked = true;
+          }
+        });
+        taskForm.addEventListener("submit", e => {
+          e.preventDefault();
+          task.title = taskTitleInput.value;
+          task.description = taskDescriptionInput.value;
+          task.dueDate = taskDueDateInput.value;
+          task.priority = Array.from(priorityInput).find(
+            input => input.checked
+          ).id;
+          render();
+        });
+      });
+      const removeBtn = taskElement.querySelector(".task-remove");
+      removeBtn.addEventListener("click", () => {
+        const index = selectedProject.tasks.indexOf(task);
+        selectedProject.tasks.splice(index, 1);
+        render();
       });
       switch (task.priority) {
         case "low":

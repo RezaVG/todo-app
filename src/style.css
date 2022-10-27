@@ -216,8 +216,15 @@ main {
   height: 24px;
 }
 
-.task-checkbox:hover {
+.tasks-list li img:hover {
   cursor: pointer;
+  opacity: 0.5;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .task-title {
